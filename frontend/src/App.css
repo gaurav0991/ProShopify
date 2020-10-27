@@ -1,0 +1,17 @@
+* {
+  margin: 0px;
+}
+h1 {
+  font-size: 1.8rem;
+}
+h2 {
+  font-size: 1.4rem;
+}
+
+.form-container {
+  align-items: center;
+  justify-content: center;
+  padding-left: 15%;
+  padding-right: 15%;
+  margin-bottom: 50px;
+}
