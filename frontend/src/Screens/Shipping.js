@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import HeaderShipping from "../Components/HeaderShipping";
-
-function Shipping() {
-  const [email, setEmail] = useState("");
+import { useDispatch, useSelector } from "react-redux";
+import { getDetails, setShippingDetails } from "../actions/loginAction";
+function Shipping(props) {
   const [city, setcity] = useState("");
   const [country, setCountry] = useState("");
   const [pincode, setPincode] = useState("");
   const [Building, setBuilding] = useState("");
   const [name, setName] = useState("");
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.userDetail);
+  const state2 = useSelector((state) => state.shippingDetails);
 
+  const { loading, user, error } = state;
+
+  useEffect(() => {
+    if (!user) {
+      dispatch(getDetails());
+    } else {
+      setName(user.user.name);
+      setcity(user.user.address.city);
+      setBuilding(user.user.address.buildingAddress);
+      setCountry(user.user.address.country);
+      setPincode(user.user.address.pincode);
+    }
+  }, [dispatch, user]);
   return (
     <div className="container">
       <div className="form-container">
@@ -17,18 +33,6 @@ function Shipping() {
         <form>
           <div class="form-group mt-3">
             <legend>Shipping Details</legend>
-            <label for="exampleInputEmail1">Email address</label>
-            <input
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              type="email"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-            />
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Name</label>
@@ -40,7 +44,7 @@ function Shipping() {
               type="text"
               class="form-control"
               id="exampleInputPassword1"
-              placeholder="Password"
+              placeholder="Name"
             />
           </div>
           <div class="form-group">
@@ -92,7 +96,16 @@ function Shipping() {
             />
           </div>
           <btn className="btn btn-danger">
-            <Link to="/payment">Continue</Link>
+            <div
+              onClick={() => {
+                dispatch(
+                  setShippingDetails(name, city, country, pincode, Building)
+                );
+                props.history.push("/payment");
+              }}
+            >
+              Continue
+            </div>
           </btn>
         </form>
       </div>

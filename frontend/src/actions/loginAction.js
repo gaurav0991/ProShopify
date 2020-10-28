@@ -73,3 +73,21 @@ export const getDetails = () => async (dispatch, getState) => {
     dispatch({ type: "USER_DETAIL_FAIL", payload: error });
   }
 };
+
+export const setShippingDetails = (
+  name,
+  city,
+  county,
+  pincode,
+  building
+) => async (dispatch, getState) => {
+  try {
+    console.log(name);
+    const data = { name, city, county, pincode, building };
+    dispatch({ type: "USER_SHIPPING_SUCCESS", payload: data });
+    localStorage.setItem("Shipping", JSON.stringify(data));
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "USER_SHIPPING_FAIL", payload: error });
+  }
+};

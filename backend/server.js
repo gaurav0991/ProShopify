@@ -4,6 +4,7 @@ import connectDb from "./db.js";
 import colors from "colors";
 import productRoute from "./routes/productRoute.js";
 import authRoutes from "./routes/authRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -14,6 +15,8 @@ app.get("/", (req, res) => {
 });
 app.use("/api/v1/products", productRoute);
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/order", orderRoutes);
+
 // app.get("/api/v1/products/:id", (req, res) => {
 //   const product = products.find((p) => p._id == req.params.id);
 //   res.json(product);

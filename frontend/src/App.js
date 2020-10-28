@@ -11,6 +11,8 @@ import RegisterScreen from "./Screens/RegisterScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import Shipping from "./Screens/Shipping";
 import PaymentScreen from "./Screens/PaymentScreen";
+import PlaceOrder from "./Screens/PlaceOrder";
+import OrderScreen from "./Screens/OrderScreen";
 function App() {
   return (
     <Router>
@@ -23,6 +25,8 @@ function App() {
         <Route exact path="/profile" component={ProfileScreen}></Route>
         <Route exact path="/shipping" component={Shipping}></Route>
         <Route exact path="/payment" component={PaymentScreen}></Route>
+        <Route exact path="/place-order" component={PlaceOrder}></Route>
+        <Route exact path="/order/:id" component={OrderScreen}></Route>
 
         <Route path="/cart/:id?" component={CartScreen}></Route>
       </div>

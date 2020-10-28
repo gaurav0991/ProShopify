@@ -36,3 +36,11 @@ export const userDetailsReducer = (state = {}, action) => {
       return state;
   }
 };
+export const shippingDetailsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "USER_SHIPPING_SUCCESS":
+      return { details: action.payload };
+    default:
+      return state;
+  }
+};

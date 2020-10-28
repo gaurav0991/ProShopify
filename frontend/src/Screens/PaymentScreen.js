@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import HeaderShipping from "../Components/HeaderShipping";
 
 function PaymentScreen() {
@@ -54,7 +55,9 @@ function PaymentScreen() {
                   Gpay
                 </label>
               </div>
-              <btn className="btn btn-danger mt-3">Continue</btn>
+              <btn className="btn btn-danger mt-3">
+                <Link to="/place-order">Continue</Link>
+              </btn>
             </fieldset>
           </div>
         </form>
